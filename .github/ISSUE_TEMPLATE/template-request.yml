@@ -1,0 +1,23 @@
+name: Template request
+description: Ask for a new Catalyst 9300 template. Approved requests are built and lab-tested.
+title: "[request] "
+labels: ["template-request"]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What should the template configure?
+      description: Features, protocols, VLANs, constraints. Use placeholders only — never paste real configs, IPs or hostnames.
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: What problem does it solve for you?
+  - type: checkboxes
+    id: safe
+    attributes:
+      label: Confirmation
+      options:
+        - label: This request contains no real network data (configs, IPs, hostnames, credentials).
+          required: true

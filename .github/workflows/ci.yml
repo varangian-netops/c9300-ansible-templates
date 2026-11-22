@@ -1,0 +1,52 @@
+name: ci
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install tools
+        run: |
+          pip install "ansible-core>=2.17,<2.19" "ansible-lint>=24.0" "yamllint>=1.35"
+          ansible-galaxy collection install cisco.ios ansible.netcommon ansible.utils
+
+      - name: Lab evidence (results.json matches site.yml)
+        run: python3 scripts/check_results.py
+
+      - name: No real-world data
+        run: python3 scripts/check_placeholders.py
+
+      - name: yamllint
+        if: hashFiles('templates/**/site.yml') != ''
+        run: yamllint -c .yamllint templates
+
+      - name: ansible-lint
+        if: hashFiles('templates/**/site.yml') != ''
+        run: ansible-lint -c .ansible-lint templates/*/site.yml
+
+      - name: Syntax check every template
+        if: hashFiles('templates/**/site.yml') != ''
+        run: |
+          for d in templates/*/; do
+            extra=(); [ -f "$d/vars.example.yml" ] && extra=(-e "@$d/vars.example.yml")
+            ansible-playbook -i tests/ci-inventory.yml "$d/site.yml" "${extra[@]}" --syntax-check
+          done
+
+      - name: Secret scan (gitleaks CLI)
+        run: |
+          docker run --rm -v "$PWD:/repo" zricethezav/gitleaks:latest detect --source=/repo --no-banner --redact

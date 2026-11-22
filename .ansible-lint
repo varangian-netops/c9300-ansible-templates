@@ -1,0 +1,7 @@
+profile: production
+exclude_paths:
+  - .factory-logs/
+  - .github/
+  - tests/
+skip_list: []
+offline: true
