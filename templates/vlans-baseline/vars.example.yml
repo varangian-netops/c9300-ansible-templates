@@ -1,0 +1,19 @@
+---
+# VLANs to create, as a list of id and name.
+vlans:
+  - id: 10
+    name: USERS
+  - id: 20
+    name: VOICE
+  - id: 30
+    name: PRINTERS
+  - id: 99
+    name: PARKING
+
+# access_ports and uplink_ports come from the inventory (host_vars/group_vars).
+
+# VLAN id assigned to every port in access_ports.
+access_vlan: 10
+
+# Description applied to every access port.
+access_port_description: "Access port"

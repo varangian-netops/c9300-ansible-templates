@@ -1,0 +1,20 @@
+{
+  "status": "pass",
+  "failed_stage": null,
+  "passed_stages": [
+    "yamllint",
+    "ansible-lint",
+    "syntax",
+    "reset",
+    "check",
+    "apply",
+    "idempotency"
+  ],
+  "site_sha256": "2d1a2c139dc9a6ef713a3ad79761c8dbbb2cef3ead070af921efb1c6efc634b3",
+  "duration_s": 19,
+  "error_tail": null,
+  "id": "0001",
+  "slug": "vlans-baseline",
+  "tested_at": "2026-11-23T20:26:36",
+  "lab": "CML-Free IOL-L2 x2 (IOS-XE 17.x)"
+}

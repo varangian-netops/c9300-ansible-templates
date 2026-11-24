@@ -1,0 +1,38 @@
+---
+- name: Configure VLANs and access ports on Cisco Catalyst 9300 switches
+  hosts: c9300_switches
+  gather_facts: false
+
+  tasks:
+    - name: Create VLANs
+      when: vlans | length > 0
+      cisco.ios.ios_vlans:
+        config: "{{ vlan_config }}"
+        state: merged
+      vars:
+        vlan_config: >-
+          [{% for v in vlans %}
+          {"vlan_id": {{ v.id | int }}, "name": {{ v.name | to_json }}}
+          {{ "," if not loop.last }}{% endfor %}]
+
+    - name: Configure access ports
+      when: access_ports | length > 0
+      cisco.ios.ios_l2_interfaces:
+        config: "{{ l2_config }}"
+        state: merged
+      vars:
+        l2_config: >-
+          [{% for p in access_ports %}
+          {"name": {{ p | to_json }}, "mode": "access", "access": {"vlan": {{ access_vlan | int }}}}
+          {{ "," if not loop.last }}{% endfor %}]
+
+    - name: Enable access ports
+      when: access_ports | length > 0
+      cisco.ios.ios_interfaces:
+        config: "{{ if_config }}"
+        state: merged
+      vars:
+        if_config: >-
+          [{% for p in access_ports %}
+          {"name": {{ p | to_json }}, "enabled": true, "description": {{ access_port_description | to_json }}}
+          {{ "," if not loop.last }}{% endfor %}]
