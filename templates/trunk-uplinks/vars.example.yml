@@ -1,0 +1,18 @@
+---
+# Uplink ports to configure as 802.1Q trunks (never the management port)
+uplink_ports:
+  - Ethernet0/1
+  - Ethernet0/2
+
+# VLAN IDs allowed on the trunks (pruning list; must not be empty)
+allowed_vlans:
+  - 10
+  - 20
+  - 30
+
+# Native VLAN for the trunks
+native_vlan: 99
+
+# Per-port descriptions; ports not listed get the default 'Uplink to Core Switch'
+uplink_port_descriptions:
+  Ethernet0/1: Uplink to CORE-SW-01

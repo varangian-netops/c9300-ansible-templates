@@ -1,0 +1,29 @@
+---
+- name: Configure trunk uplinks with allowed VLAN pruning on Cisco Catalyst 9300 switches
+  hosts: c9300_switches
+  gather_facts: false
+
+  vars_files:
+    - vars.example.yml
+
+  tasks:
+    - name: Configure trunk uplinks
+      cisco.ios.ios_l2_interfaces:
+        config:
+          - name: "{{ item }}"
+            mode: trunk
+            trunk:
+              allowed_vlans: "{{ allowed_vlans | map('string') | list }}"
+              native_vlan: "{{ native_vlan | default(99) }}"
+              encapsulation: dot1q
+        state: merged
+      loop: "{{ uplink_ports }}"
+
+    - name: Configure descriptions for trunk uplinks
+      cisco.ios.ios_interfaces:
+        config:
+          - name: "{{ item }}"
+            description: "{{ (uplink_port_descriptions | default({}))[item] | default('Uplink to Core Switch') }}"
+            enabled: true
+        state: merged
+      loop: "{{ uplink_ports }}"
