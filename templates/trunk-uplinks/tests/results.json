@@ -1,0 +1,20 @@
+{
+  "status": "pass",
+  "failed_stage": null,
+  "passed_stages": [
+    "yamllint",
+    "ansible-lint",
+    "syntax",
+    "reset",
+    "check",
+    "apply",
+    "idempotency"
+  ],
+  "site_sha256": "14c723cc4223e99390a6fe543673e11ad0243c8ae0f8739a3640cb6130d57927",
+  "duration_s": 20,
+  "error_tail": null,
+  "id": "0002",
+  "slug": "trunk-uplinks",
+  "tested_at": "2026-11-24T01:32:25",
+  "lab": "CML-Free IOL-L2 x2 (IOS-XE 17.x)"
+}
