@@ -1,0 +1,41 @@
+---
+- name: Configure management plane baseline on Cisco Catalyst 9300 switches
+  hosts: c9300_switches
+  gather_facts: false
+
+  vars_files:
+    - vars.example.yml
+
+  tasks:
+    - name: Configure NTP servers
+      cisco.ios.ios_ntp_global:
+        config:
+          servers: "{{ ntp_servers }}"
+        state: merged
+
+    - name: Configure syslog hosts and buffered logging level
+      cisco.ios.ios_logging_global:
+        config:
+          buffered:
+            size: "{{ buffered_logging_size }}"
+            severity: "{{ buffered_logging_level }}"
+          hosts: "{{ syslog_hosts }}"
+        state: merged
+
+    - name: Enable LLDP globally
+      cisco.ios.ios_config:
+        lines:
+          - lldp run
+      when: lldp_enabled | bool
+
+    - name: Configure login banner
+      cisco.ios.ios_banner:
+        banner: login
+        text: "{{ login_banner }}"
+        state: present
+
+    - name: Enable timestamps on logs
+      cisco.ios.ios_config:
+        lines:
+          - service timestamps log datetime msec
+      when: timestamps_on_logs | bool

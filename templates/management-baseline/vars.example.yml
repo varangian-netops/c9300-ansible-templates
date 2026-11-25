@@ -1,0 +1,24 @@
+---
+# NTP servers (list of dicts, key "server")
+ntp_servers:
+  - server: 192.0.2.1
+  - server: 192.0.2.2
+
+# Syslog hosts (list of dicts, key "hostname")
+syslog_hosts:
+  - hostname: 192.0.2.3
+
+# Buffered logging severity level
+buffered_logging_level: informational
+
+# Buffered logging size in bytes
+buffered_logging_size: 16384
+
+# Enable LLDP globally
+lldp_enabled: true
+
+# Login banner text
+login_banner: "Authorized access only - ACCESS-SW-01"
+
+# Add datetime timestamps to log messages
+timestamps_on_logs: true
