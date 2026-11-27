@@ -33,3 +33,30 @@ Request a template: [open a template request](../../issues/new?template=template
 ## License
 
 MIT. Test in a lab before production; you're responsible for what you push to your network.
+
+## Progress
+
+<!-- progress:start -->
+**5 of 8 templates shipped** `██████░░░░`  
+_Updated 2026-11-26 by the Varangian factory._
+
+| # | Template | Tier | Status |
+|---|---|---|---|
+| 0001 | VLAN baseline and access port assignment | Free | ✅ Shipped |
+| 0002 | Trunk uplinks with allowed VLAN pruning | Free | ✅ Shipped |
+| 0003 | Management plane baseline (NTP, logging, LLDP, banner) | Free | ✅ Shipped |
+| 0004 | Access edge protection (port security, BPDU guard, PortFast) | Pro | ✅ Shipped |
+| 0005 | DHCP snooping and Dynamic ARP Inspection | Pro | ✅ Shipped |
+| 0006 | StackWise priorities, PoE budget and auto-QoS for IP phones | Pro | 💡 Proposed |
+| 0008 | Access List Management | Pro | ⏳ Queued |
+| 0010 | OSPF routed access uplinks | Free | ⏳ Queued |
+
+**Milestones**
+
+- ✅ 2026-11-22: Factory build: lab, ccf, validator, nightly run
+- ✅ 2026-11-25: Free tier: first three templates (0001–0003)
+- ✅ 2026-11-25: Pro tier: first template (0004) merged
+- 🗓️ 2026-11-29: First weekly release (Sunday 18:00 timer)
+
+Free templates live in this repo. Pro templates are in the paid tier.
+<!-- progress:end -->
