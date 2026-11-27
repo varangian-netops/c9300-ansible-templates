@@ -38,7 +38,7 @@ MIT. Test in a lab before production; you're responsible for what you push to yo
 
 <!-- progress:start -->
 **5 of 8 templates shipped** `██████░░░░`  
-_Updated 2026-11-26 by the Varangian factory._
+_Updated 2026-11-27 by the Varangian factory._
 
 | # | Template | Tier | Status |
 |---|---|---|---|
