@@ -49,7 +49,7 @@ _Updated 2026-11-27 by the Varangian factory._
 | 0005 | DHCP snooping and Dynamic ARP Inspection | Pro | ✅ Shipped |
 | 0006 | StackWise priorities, PoE budget and auto-QoS for IP phones | Pro | 💡 Proposed |
 | 0008 | Access List Management | Pro | ⏳ Queued |
-| 0010 | OSPF routed access uplinks | Free | ⏳ Queued |
+| 0010 | OSPF routed access uplinks | Free | blocked |
 
 **Milestones**
 
