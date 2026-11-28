@@ -38,7 +38,7 @@ MIT. Test in a lab before production; you're responsible for what you push to yo
 
 <!-- progress:start -->
 **5 of 8 templates shipped** `██████░░░░`  
-_Updated 2026-11-27 by the Varangian factory._
+_Updated 2026-11-28 by the Varangian factory._
 
 | # | Template | Tier | Status |
 |---|---|---|---|
@@ -48,7 +48,7 @@ _Updated 2026-11-27 by the Varangian factory._
 | 0004 | Access edge protection (port security, BPDU guard, PortFast) | Pro | ✅ Shipped |
 | 0005 | DHCP snooping and Dynamic ARP Inspection | Pro | ✅ Shipped |
 | 0006 | StackWise priorities, PoE budget and auto-QoS for IP phones | Pro | 💡 Proposed |
-| 0008 | Access List Management | Pro | ⏳ Queued |
+| 0008 | Access List Management | Pro | blocked |
 | 0010 | OSPF routed access uplinks | Free | blocked |
 
 **Milestones**
